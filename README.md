@@ -1,10 +1,10 @@
 <div align="center">
 
 # laravel-ansible
-![image](https://github.com/Afansyarifudin/laravel-ansible/assets/68774609/1670bedd-e932-4e18-8caa-817c7b4ab919)
-
 ![GitHub watchers](https://img.shields.io/github/watchers/Afansyarifudin/laravel-ansible?style=social)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/Afansyarifudin/laravel-ansible/master)
+
+![image](https://github.com/Afansyarifudin/laravel-ansible/assets/68774609/1670bedd-e932-4e18-8caa-817c7b4ab919)
 
 Template for Automation Deployment Laravel into VPS just using one run command
 
