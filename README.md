@@ -63,11 +63,11 @@ If you have only one vps just put the same IP
 ```bash
 vi inventory
 ```
-Change the repo on the Task Install Laravel Project (find the command `# CHANGE LARAVEL REPO` and change your git repo)
+Change the repo on the `Task Install Laravel Project` (find the command `# CHANGE LARAVEL REPO` and change your git repo)
 ```bash
 vi web-server_tasks/server.yml
 ```
-If you want to chnage apache configuration go to `web-server_tasks/apache-conf/my-app.conf.j2` (Optional)
+If you want to change apache configuration go to `web-server_tasks/apache-conf/my-app.conf.j2` (Optional)
 ```bash
 vi web-server_tasks/apache-conf/my-app.conf.j2
 ```
