@@ -1,6 +1,6 @@
 [webserver]
-34.101.44.76
+34.101.44.76    #REPLACE_WITH YOU PUBLIC_IP
 
 [database_server]
-34.101.44.76
+34.101.44.76    #REPLACE_WITH YOU PUBLIC_IP
 
