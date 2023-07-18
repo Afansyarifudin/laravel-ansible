@@ -14,7 +14,7 @@ Template for Automation Deployment Laravel into VPS just using one run command
 git clone https://github.com/Afansyarifudin/laravel-ansible.git
 ```
 
-## Requirmenets
+## Requirements
 - Windows => reccommended to use WSL (Windows Subsystem for Linux)
 - Mac
 - Linux
