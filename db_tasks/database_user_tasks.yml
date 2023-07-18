@@ -1,0 +1,36 @@
+- name: Include database server variables
+  include_vars:
+    file: vars/group_vars/all.yml
+    name: all_vars
+
+- name: Include database server permission groups
+  include_vars:
+    file: vars/group_vars/database_servers.yml
+    name: database_servers_vars
+
+- name: Ensure database permission group exists
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ database_servers_vars.host_permission_groups }}"
+
+- name: Ensure database users exist
+  user:
+    name: "{{ item.username }}"
+    groups: "{{ item.role }}"
+    append: yes
+    state: present
+  loop: "{{ all_vars.user_list }}"
+  when: "item.role in database_servers_vars.host_permission_groups"
+
+- name: MYSQL user
+  mysql_user:
+    login_user: root
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    priv: '*.*:{{ item.access }}'
+    state: present
+  loop: "{{ all_vars.user_list }}"
+  when: "item.role in database_servers_vars.host_permission_groups"
+

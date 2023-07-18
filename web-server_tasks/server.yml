@@ -1,0 +1,111 @@
+---
+    - name: Install software-properties-common
+      become: yes
+      apt:
+        name: software-properties-common
+        state: present
+        update_cache: yes
+
+    - name: Add ondrej/php PPA repository
+      become: yes
+      command: add-apt-repository ppa:ondrej/php -y
+
+    - name: Update package cache after adding the repository
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install packages
+      become: yes
+      apt:
+        pkg:
+          - php
+          - php-xml
+          - php-mysql
+          - libapache2-mod-php
+          - apache2
+          - git
+          - zip
+          - unzip
+          - curl
+          - php-curl
+        state: latest
+        update_cache: yes
+
+    - name: Install composer
+      shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      args:
+        creates: /usr/local/bin/composer
+      become: yes
+
+    - name: Install Laravel Project 
+      git: 
+        repo: https://github.com/Askara-Dev/web-kedhaton-ati.git     # CHANGE LARAVEL REPO
+        dest: /var/www/my-app
+        update: yes
+        force: yes
+      become: yes
+
+    - name: Take ownership of kedhaton-ati folder
+      file: 
+        path: /var/www/my-app
+        owner: root
+        group: root
+        mode: "775"
+      become: yes
+      
+    - name: Set permission for laravel storage
+      file: 
+        path: /var/www/my-app/storage
+        state: directory
+        mode: "777"
+        recurse: yes
+      become: yes
+
+    - name: Install laravel dependencies
+      composer:
+        command: update
+        working_dir: /var/www/my-app
+      become: yes
+      environment:
+        COMPOSER_ALLOW_SUPERUSER: "1"
+
+    - name: copy env file
+      copy: 
+        src: /var/www/my-app/.env.example
+        remote_src: yes
+        dest: /var/www/my-app/.env
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+
+    - name: Copy apache config
+      copy: 
+        src: apache-conf/my-app.conf.j2
+        dest: /etc/apache2/sites-available/my-app.conf
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+
+    - name: Enable new config
+      shell: |
+        a2ensite kedhaton-ati.conf
+        a2dissite 000-default.conf
+        a2enmod rewrite
+        service apache2 restart
+      become: yes
+
+    - name: Apache 2 is started
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
+    - name: Run Php Artisan key Generate 
+      command: php artisan key:generate
+      become: yes
+      args: 
+        chdir: /var/www/my-app
+

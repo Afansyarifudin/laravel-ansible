@@ -1,0 +1,12 @@
+---
+user_list:
+  - name: kedhaton Admin
+    username: admin    #db username 
+    password: secret   #db_password
+    access: ALL
+    role: dbadmin
+  - name: kedhaton User
+    username: user      #db_username
+    password: secret    #db_password
+    access: SELECT
+    role: dbuser

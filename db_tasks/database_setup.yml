@@ -1,0 +1,3 @@
+---
+    - name: Setup Database task on supported host with min RAM
+      include_tasks: Ubuntu_database_tasks.yml

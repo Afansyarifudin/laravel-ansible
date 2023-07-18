@@ -1,0 +1,12 @@
+
+<VirtualHost *:80>
+    ServerName my-app
+    ServerAlias www.my-app
+    DocumentRoot /var/www/my-app/public
+    
+    <Directory /var/www/my-app/public>
+        Options +Indexes +FollowSymlinks +Includes
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>

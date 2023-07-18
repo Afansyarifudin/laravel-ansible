@@ -1,0 +1,9 @@
+- name: Setup Web server
+  hosts: webserver
+  become: true
+  tasks: 
+    - name: Setup Web server
+      include_tasks: web-server_tasks/server.yml
+
+    - name: Setup Database
+      include_tasks: db_tasks/database_setup.yml
