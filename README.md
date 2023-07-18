@@ -20,6 +20,7 @@ git clone https://github.com/Afansyarifudin/laravel-ansible.git
 - Linux
 - Install python [pip](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#ensuring-pip-is-available)
 - Install [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- One VPS or Server
 - SSH ACCESS to you server if you don't have ssh-keys juts generate using this command
 ```bash
 ssh-keygen
