@@ -40,7 +40,7 @@
 
     - name: Install Laravel Project 
       git: 
-        repo: https://github.com/Askara-Dev/web-kedhaton-ati.git     # CHANGE LARAVEL REPO
+        repo: https://github.com/Askara-Dev/web-kedhaton.git     # CHANGE LARAVEL REPO
         dest: /var/www/my-app
         update: yes
         force: yes
